@@ -1,5 +1,0 @@
-$baseFontSize: 100px !default;
-$baseFontSize2x: 200px !default;
-@function pxToRem($px) {
-  @return $px / $baseFontSize * 1rem;
-}
