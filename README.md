@@ -49,12 +49,12 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 2.整个项目由 vue+ vuex+ vue-route 组成，XhttpRequest 请求由 axios 库完成，ui 控件采用 饿了吗的Vue 手机端 控件 mint-ui
  （1） src/main.js 全局引入 mint-ui 控件及样式文件，语法请查看mint-ui文档
        在src/main.js 引入normalize.css  重置样式
- （1） vue 负责html 模板和数据渲染，模板语法请查阅官方文档
- （2） 所有请求api 统一放置在 src/api/index.js 文件夹中进行管理
+ （2） vue 负责html 模板和数据渲染，模板语法请查阅官方文档
+ （3） 所有请求api 统一放置在 src/api/index.js 文件夹中进行管理
         a、引入 crypto.js 后，axios 可根据项目增加配置，对传输的数据进行的加密，解密
         b、axios 可根据环境不同，更改 配置 url 前缀
         c、具体使用请查阅axios官方文档
- （3） vuex 配合 axios 负责整个项目的数据存储和管理
+ （4） vuex 配合 axios 负责整个项目的数据存储和管理
         a、异步获取更改数据   页面 dispatch actionType 至 vuex ,vuex 根据 actionType 调用 axios 中对应的 api 更新 store
         b、常规同步修改数据，commit  mutationType 至 对应的 mutation 函数处理数据变动
         b、页面 使用 computed 动态 获取store  中的 数据进行数据响应式渲染
@@ -64,7 +64,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
             home.js 负责 Home.vue 此组件所在路由下的所有数据的管理和存储
         f、最后于 src/vuex/store.js 进行所有路由数据的拼装
         d、具体使用请查阅官方vuex 文档
-  (4)   vue-router  负责整个单页面的路由 如 src/router/index.js
+  (5)   vue-router  负责整个单页面的路由 如 src/router/index.js
             异步或同步加载对应的模块，对于不同的模块配置对应的name，路径path,和components 参数
             具体使用请查阅 官方vue-route 文档
 

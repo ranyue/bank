@@ -8,10 +8,11 @@ import 'mint-ui/lib/style.css'
 import 'normalize.css'
 Vue.use(MintUI)
 Vue.config.productionTip = false
-
+let store = require('./vuex/store.js')
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store: store.default,
   router,
   template: '<App/>',
   components: { App }
