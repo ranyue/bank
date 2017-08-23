@@ -43,11 +43,12 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
     |   ├── cart.js       # 各个页面的数据处理
         └── products.js   # 产品模块
 
-
+ 首先，npm install 下载 package.json 中的文件包。 node-sass 模块出错，请多下载几次 或翻墙下载
 1、项目由webpack 构建,执行 npm run dev  即可以跑起本地服务，npm run build 打包文件 至 dist 文件夹
 
 2.整个项目由 vue+ vuex+ vue-route 组成，XhttpRequest 请求由 axios 库完成，ui 控件采用 饿了吗的Vue 手机端 控件 mint-ui
  （1） src/main.js 全局引入 mint-ui 控件及样式文件，语法请查看mint-ui文档
+       在src/main.js 引入normalize.css  重置样式
  （1） vue 负责html 模板和数据渲染，模板语法请查阅官方文档
  （2） 所有请求api 统一放置在 src/api/index.js 文件夹中进行管理
         a、引入 crypto.js 后，axios 可根据项目增加配置，对传输的数据进行的加密，解密
@@ -76,4 +77,3 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 6、项目支持 sass写法， 支持外部引入或者写在vue 组件下，scoped 属性 锁住当前 sass 的作用域为当前文件 
 
 7、eslint 代码检查已经注释掉，可以在 build/webpack.base.conf.js 中开启
-
