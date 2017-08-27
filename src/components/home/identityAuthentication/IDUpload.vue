@@ -1,5 +1,5 @@
 <template>
-    <div class="second-tab">
+    <div class="IDupload">
         <div v-for="(item, index) in msg" :key="index" >
             <span>{{item}}</span>
         </div>
@@ -19,8 +19,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import './../public/sass/common.scss';
-.second-tab {
+@import './../../../public/sass/common.scss';
+.IDupload {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -39,11 +39,11 @@ export default {
         }
         &:nth-of-type(1){
             margin-top: pxToRem(30px);
-            background-image: url('../../src/assets/png/card.png');
+            background-image: url('../../../../src/assets/png/card.png');
         }
           &:nth-of-type(2){
             margin: pxToRem(30px) 0;
-              background-image: url('../../src/assets/png/card.png');
+              background-image: url('../../../../src/assets/png/card.png');
             //  background-image: url('../../src/assets/png/card-column.png');
         }
     }

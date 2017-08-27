@@ -1,5 +1,5 @@
 <template>
-    <div class="hello">
+    <div class="home">
         <mt-header title="车保分期">
             <router-link to="/" slot="left">
                 <mt-button icon="back">返回</mt-button>
@@ -7,42 +7,50 @@
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
 
-        <mt-navbar v-model="selected">
+        <!-- <mt-navbar v-model="selected">
             <mt-tab-item id="1">分期信息</mt-tab-item>
             <mt-tab-item id="2">身份认证</mt-tab-item>
             <mt-tab-item id="3">绑卡及征信</mt-tab-item>
-              <mt-tab-item id="4">签订合同</mt-tab-item>
-        </mt-navbar>
+            <mt-tab-item id="4">签订合同</mt-tab-item>
+        </mt-navbar> -->
+        <el-steps :active="Number(selected) -1" :center="center">
+            <el-step title="分期信息" ></el-step>
+            <el-step title="身份认证" ></el-step>
+            <el-step title="绑卡及征信" ></el-step>
+            <el-step title="签订合同" ></el-step>
+        </el-steps>
         <!-- tab-container -->
         <mt-tab-container v-model="selected">
             <mt-tab-container-item id="1">
-                 <firstTab></firstTab>
+                <firstTab @toNext = "goToNextStep"></firstTab>
             </mt-tab-container-item>
             <mt-tab-container-item id="2">
                 <secondTab></secondTab>
             </mt-tab-container-item>
             <mt-tab-container-item id="3">
-               <thirdTab></thirdTab>
+                <thirdTab></thirdTab>
             </mt-tab-container-item>
-              <mt-tab-container-item id="4">
+            <mt-tab-container-item id="4">
                 <mt-cell v-for="(n, index) in 6" :title="'选项 ' + n" :key="index" />
             </mt-tab-container-item>
         </mt-tab-container>
-        <mt-button type="danger" size="large" @click.native="handleClick">下一步</mt-button>
+        <!-- <mt-button type="danger" size="large" @click.native="handleClick">下一步</mt-button> -->
     </div>
 </template>
 
 <script>
-import firstTab from './firstTab.vue'
-import secondTab from './secondTab.vue'
-import thirdTab from './thirdTab.vue'
+import firstTab from './instalmentInfo/index.vue'
+import secondTab from './identityAuthentication/index.vue'
+import thirdTab from './bindAndInvestigation/index.vue'
+
 export default {
     name: 'hello',
     data() {
         return {
-            msg: 'Welcome to Your Vue.js App',
-            selected: "1"
-        }
+            selected: "1",
+            center: true,
+            loading: true
+            }
     },
     components: {
         firstTab,
@@ -50,8 +58,8 @@ export default {
         thirdTab
     },
     methods: {
-        handleClick() {
-            if(Number(this.selected) === 4){
+        goToNextStep() {
+            if (Number(this.selected) === 4) {
                 return
             }
             this.selected = String(Number(this.selected) + 1)
@@ -59,9 +67,18 @@ export default {
     }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import './../public/sass/common.scss';
+.home {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+}
+
+.mint-button {
+    margin: 20px 0 20px 7%;
+    width: 86%;
+}
 </style>
+
+
 
