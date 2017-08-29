@@ -47,6 +47,18 @@ $baseFontSize2x: 200px !default;
   }
   >.el-steps.is-horizontal.is-center{
 
-    margin: pxToRem(20px) pxToRem(-25px) 0 pxToRem(25px);
+    margin: pxToRem(20px) 0 0 0;
+    padding-left: pxToRem(30px);
   }
+}
+
+
+li{
+  list-style-type:none
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  -webkit-padding-start: 0;
 }

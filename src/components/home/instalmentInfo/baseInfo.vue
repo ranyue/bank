@@ -50,7 +50,7 @@
                 <el-input v-model="form.estate_count"></el-input>
             </el-form-item>
         </el-form>
-        <mt-button type="danger" size="large" @click.native="handleClick">下一步</mt-button>
+        <mt-button  plain type="primary"  @click.native="handleClick">下一步</mt-button>
     </div>
 </template>
 
@@ -307,7 +307,7 @@ export default {
 .base-info {
     margin-top: 15px;
     .mint-button {
-        margin: 20px 0 20px 7%;
+        margin: 20px 0 20px 0;
         width: 86%;
     }
 }

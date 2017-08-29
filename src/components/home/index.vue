@@ -25,13 +25,13 @@
                 <firstTab @toNext = "goToNextStep"></firstTab>
             </mt-tab-container-item>
             <mt-tab-container-item id="2">
-                <secondTab></secondTab>
+                <secondTab @toNext = "goToNextStep"></secondTab>
             </mt-tab-container-item>
-            <mt-tab-container-item id="3">
-                <thirdTab></thirdTab>
+            <mt-tab-container-item id="3" >
+                <thirdTab @toNext="goToNextStep"></thirdTab>
             </mt-tab-container-item>
             <mt-tab-container-item id="4">
-                <mt-cell v-for="(n, index) in 6" :title="'选项 ' + n" :key="index" />
+                <signContract></signContract>
             </mt-tab-container-item>
         </mt-tab-container>
         <!-- <mt-button type="danger" size="large" @click.native="handleClick">下一步</mt-button> -->
@@ -42,7 +42,7 @@
 import firstTab from './instalmentInfo/index.vue'
 import secondTab from './identityAuthentication/index.vue'
 import thirdTab from './bindAndInvestigation/index.vue'
-
+import signContract from './signContract/index.vue'
 export default {
     name: 'hello',
     data() {
@@ -55,7 +55,8 @@ export default {
     components: {
         firstTab,
         secondTab,
-        thirdTab
+        thirdTab,
+        signContract
     },
     methods: {
         goToNextStep() {
@@ -72,10 +73,15 @@ export default {
     // display: flex;
     // align-items: center;
     // justify-content: center;
+    // overflow: hidden;
+    .mint-tab-container{
+        overflow: unset;
+    }
+   
 }
 
 .mint-button {
-    margin: 20px 0 20px 7%;
+    margin: 20px 0 20px 0;
     width: 86%;
 }
 </style>

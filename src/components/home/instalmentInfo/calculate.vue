@@ -9,7 +9,7 @@
         <mt-radio title="选择期数" v-model="value" :options="options"></mt-radio>
         <mt-field label="首付金额" :readonly="readonly" type="number" v-model="firstPayMoney"></mt-field>
         <mt-field label="每月还款金额" :readonly="readonly" type="number" v-model="perPayMoney"></mt-field>
-        <mt-button type="danger" size="large" @click.native="handleClick">下一步</mt-button>
+        <mt-button  plain type="primary"  @click.native="handleClick">下一步</mt-button>
     </div>
 </template>
 
@@ -134,7 +134,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .mint-button {
-    margin: 20px 0 20px 7%;
+    margin: 20px 0 20px 0;
     width: 86%;
 }
 </style>
