@@ -22,7 +22,8 @@ export default {
     return {
       mobile: '',
       readonly: true,
-      value: []
+      value: [],
+      licencePlateNum: ''
     }
   }
 }
