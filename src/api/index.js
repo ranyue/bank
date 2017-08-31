@@ -1,5 +1,5 @@
 import Axios from 'axios'
-
+// import MD5 from 'js-md5'
 function FoamatParams (params) {
   let str = ''
   if (!params) {
@@ -12,18 +12,21 @@ function FoamatParams (params) {
   str = '?' + str
   return str
 }
-
+let paramsObj = {
+  secretKey: 2222,
+  original: '送车保',
+  sno: `CB${new Date().getTime()}`
+}
 function Service () {
   let axios = Axios.create({
     timeout: 4000,
-    baseURL: 'baidu.com'
+    baseURL: 'http://10.4.146.4/sdk/open/'
   })
-  this.postValue = (params) => {
-    return axios.post('/pc/api/v1/listTags')
-  }
+
   // 拉去客户信息
   this.getClientInfo = (params) => {
-    let str = FoamatParams(params)
+    let query = Object.assign(params, {sno: paramsObj.sno, original: paramsObj.original})
+    let str = FoamatParams(query)
     return axios.get('/api/sence/custom/baseinfo/query' + str)
   }
   this.instlPeriods = (params) => {

@@ -61,12 +61,12 @@ export default {
     },
     computed: {
         firstPayMoney() {
-            console.log(parseFloat(this.initialDate.sence_json.applyAmt), parseFloat(this.initialDate.sence_json.ratio))
-            return parseFloat(this.initialDate.sence_json.applyAmt) * parseFloat(this.initialDate.sence_json.ratio)
+            console.log(parseFloat(this.$store.state.home.initalInfo.sence_json.applyAmt), parseFloat(this.$store.state.home.initalInfo.sence_json.ratio))
+            return parseFloat(this.$store.state.home.initalInfo.sence_json.applyAmt) * parseFloat(this.$store.state.home.initalInfo.sence_json.ratio)
         },
         perPayMoney: {
             get: function() {
-                return (parseFloat(this.initialDate.sence_json.applyAmt) - this.firstPayMoney) / parseFloat(this.value)
+                return (parseFloat(this.$store.state.home.initalInfo.sence_json.applyAmt) - this.firstPayMoney) / parseFloat(this.value)
             },
             set: function (newValue) {
             }
@@ -109,26 +109,18 @@ export default {
     },
     created() {      
         this.routeDate = this.$route.query
-          // let defaultQuery = {
-        //     biz_sence_sno: '1212', // 业务编号
-        //     appAccessToken: '1211212', // token
-        //     appID: '1221121212'
-        // }
-        // sno:	流水号
-        // original	来源渠道ID
-        // biz_sence_sno	业务场景编号
-        //  Service.getClientInfo()
-        this.initialDate = {
-            cust_name: '韩永',
-            cust_card_type: '1',
-            cus_card_sno: '31123123123123', // 身份证
-            mobile: '13111111111',
-            sence_json: {
-                carProductNo: '12312312312312312312', // 车架号
-                applyAmt: '3000.00', // 保费金额
-                ratio: '0.1' // 首付比例
-            }
+        let defaultQuery = {
+            biz_sence_sno: '就送123456', // 业务编号
+            appAccessToken: '1211212', // token
+            appID: '11111'
         }
+        if(!this.routeDate.appID){
+            this.routeDate = defaultQuery
+        }
+        this.$store.commit('save_route_info', this.routeDate)
+        this.$store.dispatch('get_client_info',{
+            biz_sence_sno: this.routeDate.biz_sence_sno
+        })
     }
 }
 </script>
