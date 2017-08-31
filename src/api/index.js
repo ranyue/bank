@@ -25,17 +25,17 @@ function Service () {
 
   // 拉去客户信息
   this.getClientInfo = (params) => {
-    let query = Object.assign(params, {sno: paramsObj.sno, original: paramsObj.original})
-    let str = FoamatParams(query)
+    Object.assign(params, {sno: paramsObj.sno, original: paramsObj.original})
+    let str = FoamatParams(params)
     return axios.get('/api/sence/custom/baseinfo/query' + str)
   }
   this.instlPeriods = (params) => {
-    let str = FoamatParams(params)
-    return axios.get('/api/sence/bussiness/periodsnum/modify' + str)
-  }
+    Object.assign(params, {sno: paramsObj.sno, original: paramsObj.original})
+    return axios.post('/api/sence/bussiness/periodsnum/modify',params)
+  }  
   this.addClientSubInfo = (params) => {
-    let str = FoamatParams(params)
-    return axios.get('/api/sence/custom/addtion/modify' + str)
+    Object.assign(params, {sno: paramsObj.sno, original: paramsObj.original})
+    return axios.post('/api/sence/custom/addtion/modify',params)
   }
 }
 export default new Service()

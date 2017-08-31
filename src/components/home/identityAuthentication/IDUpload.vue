@@ -1,7 +1,7 @@
 <template>
     <div class="IDupload">
         <div v-for="(item, index) in msg" :key="index" >
-            <span>{{item}}</span>
+            <span >{{item}}</span>
         </div>
     </div>
 </template>
@@ -14,8 +14,11 @@ export default {
                 '点击提交身份证反面照片'
             ]
         }
-
+    },
+    methods: {
+        
     }
+
 }
 </script>
 <style lang="scss" scoped>

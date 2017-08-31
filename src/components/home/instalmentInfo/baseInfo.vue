@@ -50,7 +50,7 @@
                 <el-input v-model="form.estate_count"></el-input>
             </el-form-item>
         </el-form>
-        <mt-button  plain type="primary"  @click.native="handleClick">下一步</mt-button>
+        <mt-button plain type="primary" @click.native="handleClick">下一步</mt-button>
     </div>
 </template>
 
@@ -269,9 +269,6 @@ export default {
     methods: {
         handleClick() {
             let params = {
-                'sno': '', //	流水号
-                'original': '',	//	来源渠道ID
-                'biz_sence_sno': '',	//	业务场景流水号
                 'education_level': '',	//	最高学历
                 'marita_status': '',	//	婚姻状态
                 'children_num': '',	//	子女数
@@ -284,20 +281,16 @@ export default {
                 'company_addr': '',	//	单位地址
                 'estate_count': '',	//	净资产
             }
-             this.$emit('toNexT', {
-                            type: 'goToNextSteps'
-                        })
-            // Service.addClientSubInfo(params)
+            // this.$store.dispatch('add_client_sub_info', params)
             //     .then(res => {
-            //         if (res.data.error_code == 0) {
-            //             this.$emit('toNexT', {
-            //                 type: 'goToNextSteps'
-            //             })
-            //         }
+                   
+            //         this.$emit('toNexT', {
+            //             type: 'goToNextSteps'
+            //         })
             //     })
-            //     .catch(e => {
-            //         console.log(e)
-            //     })
+            this.$emit('toNexT', {
+                type: 'goToNextSteps'
+            })
         }
     },
 }
