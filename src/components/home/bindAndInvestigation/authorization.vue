@@ -10,21 +10,100 @@
       </div>
     </div>
     <div class="code">
-      <mt-field label="验证码：" placeholder="请输入验证码" type="number" v-model="licencePlateNum"></mt-field>
+      <mt-field label="验证码：" placeholder="请输入验证码" type="number" v-model="dynamicPwd"></mt-field>
       <mt-button plain type="primary" @click.native="handleClick">获取验证码</mt-button>
     </div>
   </div>
 </template>
 
 <script>
+import Service from './../../../api/index.js'
+import { Toast } from 'mint-ui'
 export default {
   data() {
     return {
       mobile: '',
       readonly: true,
       value: [],
-      licencePlateNum: ''
+      licencePlateNum: '',
+      dynamicPwd: ''
     }
+  },
+  computed: {
+    biz_sence_sno() {
+      return this.$store.state.home.routeInfo.biz_sence_sno
+    },
+    cus_card_sno() {
+      return this.$store.state.home.initialInfo.cus_card_sno
+    },
+    grantNo() {
+      return this.$store.state.bindInfo.grantNo
+    },
+    cust_name() {
+      return this.$store.state.home.initialInfo.cust_name
+    }
+  },
+  methods: {
+    handleClick() {
+      let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+      if (!myreg.test(this.mobile)) {
+        return Toast({
+          message: '请输入正确的手机号码',
+          duration: 1500
+        });
+      }
+      Service.sendAxsMsg({
+        mobile: this.mobile,
+        biz_sence_sno: this.biz_sence_sno
+      })
+        .then(res => {
+          if (res.data.errorCode == 0) {
+            return Toast({
+              message: '发送验证码成功',
+              duration: 1500
+            });
+          } else {
+            return Toast({
+              message: '发送验证码失败' + res.data.errorMsg,
+              duration: 1500
+            });
+          }
+        })
+        .catch(e => {
+          return Toast({
+            message: '发送验证码失败' + e,
+            duration: 1500
+          });
+        })
+    },
+    goToNext() {
+      let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+      if (!myreg.test(this.mobile)) {
+        return Toast({
+          message: '请输入正确的手机号码',
+          duration: 1500
+        });
+      }
+      Service.signContract({
+        mobile: this.mobile,
+        dynamicPwd: this.dynamicPwd,
+        biz_sence_sno: this.biz_sence_sno,
+        scene_json: {
+          globalType: 1,
+          clientID: this.cus_card_sno,
+          grantNo: this.grantNo,
+          signDate: new Date().getTime(),
+          clientName: this.cust_name
+        }
+      })
+      .then(res => {
+        if(res.data.errorCode == 0){
+          
+        }
+      })
+
+    }
+
   }
 }
 </script>

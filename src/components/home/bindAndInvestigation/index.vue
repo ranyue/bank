@@ -1,7 +1,7 @@
 <template>
     <div class="bind">
-        <component :is="componentID" @showDetail ="handleShowDetail"></component>
-        <showDetail v-show="isShowDetail" @hideDetail="isShowDetail = false"></showDetail>  
+        <component :is="componentID" ></component>
+        <showDetail v-show="isShowDetail" ></showDetail>
         <mt-button  plain type="primary"  @click.native="handleClick" v-show="!isShowDetail">下一步</mt-button>
     </div>
 </template>
@@ -13,8 +13,7 @@ import showDetail from './showDetail.vue'
 export default {
     data(){
         return {
-            componentID: bindInfo,
-            isShowDetail: false
+            componentID: bindInfo
         }
     },
     methods: {
@@ -30,9 +29,11 @@ export default {
             if(this.componentID == detail){
                 this.$emit('toNext')
             }
-        },
-        handleShowDetail() {
-            this.isShowDetail = true
+        }
+    },
+    computed: {
+        isShowDetail() {
+            return this.$store.state.bindInfo.isShowDetail
         }
     },
     components: {

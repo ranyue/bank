@@ -3,20 +3,59 @@
         <div v-for="(item, index) in msg" :key="index" >
             <span >{{item}}</span>
         </div>
+        
     </div>
 </template>
 <script>
+import { Toast } from 'mint-ui';
 export default {
     data() {
         return {
             msg: [
                 '点击提交身份证正面照片',
                 '点击提交身份证反面照片'
-            ]
+            ],
+            frontPhoto: '',	// 身份证正面照片
+            conPhoto: '', //	身份证反面照片
+            ocr_mode: '', //	业务类型
+            biz_name: '小鱼bank' ,//	业务名
+            ocr_type: '1', //	证件类型
+        }
+    },
+    computed: {
+        biz_sence_sno() {
+            return this.$store.state.home.routeInfo.biz_sence_sno
         }
     },
     methods: {
-        
+        uploadPic() {
+            if(!this.frontPhoto){
+                  return Toast({
+                    message: '请上传正面照片',
+                    duration: 1500
+                });
+            }
+             if(!this.conPhoto){
+                  return Toast({
+                    message: '请上传反面照片',
+                    duration: 1500
+                });
+            }
+            this.store.dispatch('uploadPic', {
+                font: {
+                    frontPhoto: this.frontPhoto,	// 身份证正面照片
+                    ocr_mode: '1', //	业务类型
+                    biz_name: '小鱼bank' ,//	业务名
+                    ocr_type: '1', //	证件类型
+                },
+                back: {
+                    conPhoto: this.conPhoto, //	身份证反面照片
+                    ocr_mode: '2', //	业务类型
+                    biz_name: '小鱼bank' ,//	业务名
+                    ocr_type: '1', //	证件类型
+                }
+            })
+        }
     }
 
 }

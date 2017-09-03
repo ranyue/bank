@@ -1,5 +1,5 @@
 <template>
-    <div class="show-detail">
+    <div class="show-detail" v-if="isShowDetail">
         <span>分期还款计划表</span>
         <div class="table">
             <ul>
@@ -40,9 +40,19 @@ export default {
             ]
         }
     },
+    computed: {
+        repayPlan() {
+            return this.$store.state.bindInfo.repayPlan
+        },
+        isShowDetail: {
+            get: function(){
+                return this.$store.state.bindInfo.isShowDetail
+            }     
+        }
+    },
     methods: {
         handleClick() {
-            this.$emit('hideDetail')
+            this.$store.commit('updateIsshowDetail',false)
         }
     }
 }

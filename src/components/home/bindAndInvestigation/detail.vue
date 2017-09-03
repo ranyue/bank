@@ -2,7 +2,7 @@
   <div class="detail">
     <div class="content">
       <span>恭喜，贷款申请已通过！</span>
-      <mt-field label="姓名：" placeholder="脱敏(不可修改)" :readonly="readonly" v-model="name"></mt-field>
+      <mt-field label="姓名：" placeholder="脱敏(不可修改)" :readonly="readonly" v-model="cust_name"></mt-field>
       <mt-field label="还款卡号：" placeholder="脱敏(不可修改)" :readonly="readonly" v-model="name"></mt-field>
       <mt-field label="保险金额：" placeholder="脱敏(不可修改)" :readonly="readonly" v-model="name"></mt-field>
       <mt-field label="分期期数：" placeholder="脱敏(不可修改)" :readonly="readonly" v-model="name"></mt-field>
@@ -22,9 +22,20 @@ export default {
       readonly: true
     }
   },
+  computed: {
+    cust_name() {
+      return this.$store.state.home.initialInfo.cust_name
+    },
+    cus_card_sno() {
+      return this.$store.state.home.initialInfo.cus_card_sno
+    }
+  },
   methods: {
     handleClick() {
-      this.$emit('showDetail')
+      this.$store.dispatch('queryRepayPlan',{
+        clientName: this.cust_name,
+        clientID: this.cus_card_sno
+      })
     } 
   }
 }
