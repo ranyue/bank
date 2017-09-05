@@ -26,8 +26,7 @@ function Service() {
   // 拉去客户信息
   this.getClientInfo = (params) => {
     Object.assign(params, { sno: paramsObj.sno, original: paramsObj.original })
-    let str = FoamatParams(params)
-    return axios.get('/api/sence/custom/baseinfo/query' + str)
+    return axios.post('/api/sence/custom/baseinfo/query', params)
   }
   this.instlPeriods = (params) => {
     Object.assign(params, { sno: paramsObj.sno, original: paramsObj.original })
