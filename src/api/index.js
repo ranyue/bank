@@ -20,7 +20,11 @@ let paramsObj = {
 function Service() {
   let axios = Axios.create({
     timeout: 4000,
-    baseURL: 'http://10.4.146.4/sdk/open/'
+    baseURL: 'http://10.4.146.4/sdk/open/',
+    proxy: {
+      host: '127.0.0.1',
+      port: 60004
+    }
   })
 
   // 拉去客户信息

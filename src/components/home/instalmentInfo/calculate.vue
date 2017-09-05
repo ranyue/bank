@@ -107,9 +107,9 @@ export default {
     created() {      
         let routeDate = this.$route.query
         let defaultQuery = {
-            biz_sence_sno: '就送123456', // 业务编号
-            appAccessToken: '1211212', // token
-            appID: '11111'
+            biz_sence_sno: 'CBZC000001', // 业务编号
+            appAccessToken: '635de484e327800c94ee06034e72b44b', // token
+            appID: '98436bfb-5e56-4b8e-98df-d8a07c0ac152'
         }
         if(!routeDate.appID){
             routeDate = defaultQuery
