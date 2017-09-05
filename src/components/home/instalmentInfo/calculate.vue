@@ -9,7 +9,7 @@
         <mt-radio title="选择期数" v-model="value" :options="options"></mt-radio>
         <mt-field label="首付金额" :readonly="readonly" type="number" v-model="firstPayMoney"></mt-field>
         <mt-field label="每月还款金额" :readonly="readonly" type="number" v-model="perPayMoney"></mt-field>
-        <mt-button  plain type="primary"  @click.native="handleClick">下一步</mt-button>
+        <mt-button plain type="primary" @click.native="handleClick">下一步</mt-button>
     </div>
 </template>
 
@@ -56,19 +56,22 @@ export default {
             get: function() {
                 return (parseFloat(this.initialInfo.sence_json.applyAmt) - this.firstPayMoney) / parseFloat(this.value)
             },
-            set: function (newValue) {
+            set: function(newValue) {
             }
         },
         initialInfo: {
-            get () {
+            get() {
                 return this.$store.state.home.initialInfo
             },
-            set (value){
-                this.$store.commit('update_initial_info',value)
+            set(value) {
+                this.$store.commit('update_initial_info', value)
             }
         },
-        routeDate() {
-            return this.$store.state.home.routeDate
+        routeInfo() {
+            return this.$store.state.home.routeInfo
+        },
+        paramsObj() {
+            return this.$store.state.home.paramsObj
         }
     },
     methods: {
@@ -86,38 +89,55 @@ export default {
             //         duration: 1500
             //     });
             // } 
-            // let params = {
-            //     biz_sence_sno: '',
-            //     mobile: this.initialInfo.mobile,
-            //     payment_mon: this.value,
-            //     down_payment: this.firstPayMoney,
-            // }
-            // this.$store.dispatch('instl_periods')
-            // .then(res => {
-            //      this.$emit('toNexT',{
-            //         type: 'goBaseInfo'
-            //     })
-            // })
-
-             this.$emit('toNexT',{
+            let params = {
+                appAccessToken: this.routeInfo.appAccessToken,
+                appID: this.routeInfo.appID,
+                encryptMethod: "NONE",
+                reqData: {
+                    sno: this.paramsObj.sno,
+                   original: this.paramsObj.original,
+                    biz_sence_sno: 'CBZC000001',
+                    mobile: this.mobile,
+                    payment_mon: this.value,
+                    down_payment: '200',
+                },
+                seqNO: this.paramsObj.sno
+            }
+            this.$store.dispatch('instl_periods')
+            .then(res => {
+                 this.$emit('toNexT',{
                     type: 'goBaseInfo'
                 })
+            })
+
+            // this.$emit('toNexT', {
+            //     type: 'goBaseInfo'
+            // })
         }
     },
-    created() {      
+    created() {
         let routeDate = this.$route.query
         let defaultQuery = {
             biz_sence_sno: 'CBZC000001', // 业务编号
             appAccessToken: '635de484e327800c94ee06034e72b44b', // token
             appID: '98436bfb-5e56-4b8e-98df-d8a07c0ac152'
         }
-        if(!routeDate.appID){
+        if (!routeDate.appID) {
             routeDate = defaultQuery
         }
         this.$store.commit('save_route_info', routeDate)
-        this.$store.dispatch('get_client_info',{
-            biz_sence_sno: routeDate.biz_sence_sno
+        this.$store.dispatch('get_client_info', {
+            appAccessToken: this.routeInfo.appAccessToken,
+            appID: this.routeInfo.appID,
+            encryptMethod: "NONE",
+            reqData: {
+                sno: this.paramsObj.sno,
+                original: this.paramsObj.original,
+                biz_sence_sno: this.routeInfo.biz_sence_sno
+            },
+            seqNO: this.paramsObj.sno
         })
+
     }
 }
 </script>

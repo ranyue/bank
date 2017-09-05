@@ -269,30 +269,50 @@ export default {
     methods: {
         handleClick() {
             let params = {
-                'education_level': '',	//	最高学历
-                'marita_status': '',	//	婚姻状态
-                'children_num': '',	//	子女数
-                'househand_info': '',	//	居住情况
-                'profession': '',	//	职业
-                'work_duty': '',	//	职务
-                'establishment': '',	//	编制类型
-                'profession_title': '',	//	职称
-                'company_name': '',	//	单位名称
-                'company_addr': '',	//	单位地址
-                'estate_count': '',	//	净资产
+                appAccessToken: this.routeInfo.appAccessToken,
+                appID: this.routeInfo.appID,
+                encryptMethod: "NONE",
+                reqData: {
+                    sno: this.paramsObj.sno,
+                    original: this.paramsObj.original,
+                    biz_sence_sno: this.routeInfo.biz_sence_sno,
+                    education_level: "1",
+                    marita_status: "1",
+                    children_num: "2",
+                    househand_info: "1",
+                    profession: "1",
+                    work_duty: "1",
+                    establishment: "1",
+                    profession_title: "1",
+                    company_name: "X",
+                    company_addr: "X",
+                    estate_count: "X",
+                },
+                "seqNO": this.paramsObj.sno,
             }
-            // this.$store.dispatch('add_client_sub_info', params)
-            //     .then(res => {
-                   
-            //         this.$emit('toNexT', {
-            //             type: 'goToNextSteps'
-            //         })
-            //     })
-            this.$emit('toNexT', {
-                type: 'goToNextSteps'
-            })
+            this.$store.dispatch('add_client_sub_info', params)
+                .then(res => {     
+                    this.$emit('toNexT', {
+                        type: 'goToNextSteps'
+                    })
+                })
+            // this.$emit('toNexT', {
+            //     type: 'goToNextSteps'
+            // })
         }
     },
+    computed: {
+        routeInfo() {
+            return this.$store.state.home.routeInfo
+        },
+        paramsObj() {
+            return this.$store.state.home.paramsObj
+        },
+        initialInfo() {
+            return this.$store.state.home.initialInfo
+        }
+
+    }
 }
 </script>
 

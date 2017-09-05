@@ -20,21 +20,15 @@ let paramsObj = {
 function Service() {
   let axios = Axios.create({
     timeout: 4000,
-    baseURL: 'http://10.4.146.4/sdk/open/',
-    proxy: {
-      host: '127.0.0.1',
-      port: 60004
-    }
+    baseURL: 'http://api01.tlcb.com/sdk/h5/'
   })
 
   // 拉去客户信息
   this.getClientInfo = (params) => {
-    Object.assign(params, { sno: paramsObj.sno, original: paramsObj.original })
-    return axios.post('/api/sence/custom/baseinfo/query', params)
+    return axios.post('getClientInfo', params)
   }
   this.instlPeriods = (params) => {
-    Object.assign(params, { sno: paramsObj.sno, original: paramsObj.original })
-    return axios.post('/api/sence/bussiness/periodsnum/modify', params)
+    return axios.post('instlPeriods', params)
   }
   this.addClientSubInfo = (params) => {
     Object.assign(params, { sno: paramsObj.sno, original: paramsObj.original })
