@@ -1,8 +1,8 @@
 <template>
     <div class="bind-info">
-        <mt-field label="姓名：" placeholder="请输入姓名" type="number" :readonly="readonly" v-model="cust_name"></mt-field>
+        <mt-field label="姓名：" placeholder="请输入姓名"  :readonly="readonly" v-model="cust_name"></mt-field>
         <mt-field label="银行卡号：" placeholder="请输入银行卡号" type="number" v-model="cardNo"></mt-field>
-        <mt-field label="卡类型：" placeholder="卡类型" type="number" :readonly="readonly" v-model="serialNo"></mt-field>
+        <mt-field label="卡类型：" placeholder="卡类型"  :readonly="readonly" v-model="serialNo"></mt-field>
         <mt-field label="预留手机号：" placeholder="请输入预留手机号" type="number" v-model="mobile"></mt-field>
         <div class="code">
             <mt-field label="验证码：" placeholder="请输入验证码" type="number" v-model="dynamicPwd"></mt-field>

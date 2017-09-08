@@ -1,14 +1,14 @@
 <template>
     <div class="calculate">
-        <mt-field label="车牌号" placeholder="脱敏(不可修改)" type="number" :readonly="readonly" v-model="initialInfo.rspData.sence_json.vehicle_num"></mt-field>
-        <mt-field label="车架号" placeholder="脱敏(不可修改)" type="number" :readonly="readonly" v-model="initialInfo.rspData.sence_json.vehicle_identifiy"></mt-field>
+        <mt-field label="车牌号" placeholder="脱敏(不可修改)"  :readonly="readonly" v-model="initialInfo.rspData.sence_json.vehicle_num"></mt-field>
+        <mt-field label="车架号" placeholder="脱敏(不可修改)"  :readonly="readonly" v-model="initialInfo.rspData.sence_json.vehicle_identifiy"></mt-field>
         <mt-field label="姓名" placeholder="脱敏(不可修改)" :readonly="readonly" v-model="initialInfo.rspData.cust_name"></mt-field>
         <mt-field label="身份证号" placeholder="输入身份证后六位" v-model="IDnumber"></mt-field>
         <mt-field label="手机号" placeholder="请输入手机号码" type="tel" v-model="initialInfo.rspData.mobile"></mt-field>
-        <mt-field label="保单金额" :readonly="readonly" type="number" v-model="initialInfo.rspData.sence_json.insure_fee"></mt-field>
+        <mt-field label="保单金额" :readonly="readonly"  v-model="initialInfo.rspData.sence_json.insure_fee"></mt-field>
         <mt-radio title="选择期数" v-model="value" :options="options"></mt-radio>
-        <mt-field label="首付金额" :readonly="readonly" type="number" v-model="firstPayMoney"></mt-field>
-        <mt-field label="每月还款金额" :readonly="readonly" type="number" v-model="perPayMoney"></mt-field>
+        <mt-field label="首付金额" :readonly="readonly"  v-model="firstPayMoney"></mt-field>
+        <mt-field label="每月还款金额" :readonly="readonly"  v-model="perPayMoney"></mt-field>
         <mt-button plain type="primary" @click.native="handleClick">下一步</mt-button>
     </div>
 </template>
@@ -95,11 +95,11 @@ export default {
                 encryptMethod: "NONE",
                 reqData: {
                     sno: this.paramsObj.sno,
-                   original: this.paramsObj.original,
-                    biz_sence_sno: 'CBZC000001',
+                    original: this.paramsObj.original,
+                    biz_sence_sno:this.routeInfo.biz_sence_sno,
                     mobile: this.mobile,
                     payment_mon: this.value,
-                    down_payment: '200',
+                    down_payment: this.firstPayMoney,
                 },
                 seqNO: this.paramsObj.sno
             }
@@ -117,14 +117,6 @@ export default {
     },
     created() {
         let routeDate = this.$route.query
-        let defaultQuery = {
-            biz_sence_sno: 'CBZC000001', // 业务编号
-            appAccessToken: '635de484e327800c94ee06034e72b44b', // token
-            appID: '98436bfb-5e56-4b8e-98df-d8a07c0ac152'
-        }
-        if (!routeDate.appID) {
-            routeDate = defaultQuery
-        }
         this.$store.commit('save_route_info', routeDate)
         this.$store.dispatch('get_client_info', {
             appAccessToken: this.routeInfo.appAccessToken,
