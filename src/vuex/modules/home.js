@@ -37,8 +37,8 @@ const state = {
   paramsObj: {
     original: '送车保', // 业务来源
     sno: `CB${new Date().getTime()}`   // 流水号
-  }
-
+  },
+  step: 0
 }
 const actions = {
   get_client_info({ commit }, payload) {
@@ -90,6 +90,9 @@ const mutations = {
   },
   update_initial_info(state, payload) {
     state.initialInfo = payload
+  },
+  to_next_step(state){
+    state.step ++ 
   }
 }
 

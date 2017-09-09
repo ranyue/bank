@@ -9,8 +9,7 @@ const state = {
     grantNo: '',
     repayPlan: {
 
-    },
-    isShowDetail: false
+    }
 }
 const actions = {
     getBankInfo({commit}, payload){
@@ -70,6 +69,7 @@ const actions = {
         })
     },
     queryRepayPlan({commit}, payload){
+        debugger
         Service.queryRepayPlan(payload)
         .then(res => {
             if(res.data.errorCode == 0){
@@ -90,10 +90,6 @@ const mutations = {
     },
     saveRepayPlan(state, payload) {
         state.repayPlan = payload
-        state.isShowDetail = true
-    },
-    updateIsshowDetail(state, payload) {
-        state.isShowDetail = false
     }
 }
 

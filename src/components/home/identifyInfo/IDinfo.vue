@@ -9,6 +9,7 @@
     <mt-field label="签发机关：" placeholder="请输入签发机关"  v-model="backInfo.agency"></mt-field>
     <mt-field label="起始日期：" placeholder="请输入起始日期"  v-model="backInfo.valid_date_begin"></mt-field>
     <mt-field label="截止日期：" placeholder="请输入截止日期"  v-model="backInfo.valid_date_end"></mt-field>
+      <mt-button  plain type="primary"  @click.native="handleClick">下一步</mt-button>
   </div>
 </template>
 <script>
@@ -35,10 +36,18 @@ export default {
         this.$store.commit('saveBackInfo', value)
       }
     }
+  },
+  methods: {
+    handleClick() {
+      this.$router.push('faceInfo')
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+    .mint-button {
+        margin: 20px 0 20px 0;
+        width: 86%;
+    }
 </style>

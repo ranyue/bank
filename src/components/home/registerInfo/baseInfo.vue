@@ -290,15 +290,13 @@ export default {
                 },
                 "seqNO": this.paramsObj.sno,
             }
-            this.$store.dispatch('add_client_sub_info', params)
-                .then(res => {     
-                    this.$emit('toNexT', {
-                        type: 'goToNextSteps'
-                    })
-                })
-            // this.$emit('toNexT', {
-            //     type: 'goToNextSteps'
-            // })
+            // this.$store.dispatch('add_client_sub_info', params)
+            //     .then(res => {     
+            //          this.$store.commit('to_next_step')
+           //         this.$router.push('/home/identifyInfo/IDUpload')
+            //     })
+            this.$store.commit('to_next_step')
+            this.$router.push('/home/identifyInfo/IDUpload')
         }
     },
     computed: {

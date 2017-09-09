@@ -5,14 +5,15 @@
       <span>浙江泰隆商业银行舟山分行：</span>
       <p>本人XXX（身份证XXXX），现向贵行申请贷款人民币XXXX元整，同时授权贵行在人民银行规定范围内，通过中国人民银行个人信用基础数据库查询、打印、保存本人个人基本信息和信用信息，并向个人信用信息基础数据库提供本人个人信息和信用信息。<br>授权期限为本人签订授权书之日起至合同项下债务清偿完毕止。<br>上述查询所得信用报告只限在贵行办理业务所用，贵行需保存好本人的信用报告。本人已知悉并理解授权条款的声明。</p>
       <div>
-        <mt-checklist title="复选框列表" v-model="value" :options="['本人已阅读以上条款']">
+        <mt-checklist  v-model="value" :options="['本人已阅读以上条款']">
         </mt-checklist>
       </div>
     </div>
     <div class="code">
       <mt-field label="验证码：" placeholder="请输入验证码" type="number" v-model="dynamicPwd"></mt-field>
-      <mt-button plain type="primary" @click.native="handleClick">获取验证码</mt-button>
+      <mt-button plain type="primary" @click.native="getCode">获取验证码</mt-button>
     </div>
+     <mt-button  plain type="primary"  @click.native="goToNext">下一步</mt-button>
   </div>
 </template>
 
@@ -44,7 +45,7 @@ export default {
     }
   },
   methods: {
-    handleClick() {
+    getCode() {
       let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
       if (!myreg.test(this.mobile)) {
         return Toast({
@@ -101,9 +102,8 @@ export default {
           
         }
       })
-
+      this.$router.push('detail')
     }
-
   }
 }
 </script>

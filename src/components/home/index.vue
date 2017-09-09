@@ -6,64 +6,30 @@
             </router-link>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
-
-        <!-- <mt-navbar v-model="selected">
-            <mt-tab-item id="1">分期信息</mt-tab-item>
-            <mt-tab-item id="2">身份认证</mt-tab-item>
-            <mt-tab-item id="3">绑卡及征信</mt-tab-item>
-            <mt-tab-item id="4">签订合同</mt-tab-item>
-        </mt-navbar> -->
-        <el-steps :active="Number(selected) -1" :center="center">
+        <el-steps :active="step" align-center finish-status="success" >
             <el-step title="分期信息" ></el-step>
             <el-step title="身份认证" ></el-step>
             <el-step title="绑卡及征信" ></el-step>
             <el-step title="签订合同" ></el-step>
         </el-steps>
-        <!-- tab-container -->
-        <mt-tab-container v-model="selected">
-            <mt-tab-container-item id="1">
-                <firstTab @toNext = "goToNextStep"></firstTab>
-            </mt-tab-container-item>
-            <mt-tab-container-item id="2">
-                <secondTab @toNext = "goToNextStep"></secondTab>
-            </mt-tab-container-item>
-            <mt-tab-container-item id="3" >
-                <thirdTab @toNext="goToNextStep"></thirdTab>
-            </mt-tab-container-item>
-            <mt-tab-container-item id="4">
-                <signContract></signContract>
-            </mt-tab-container-item>
-        </mt-tab-container>
-        <!-- <mt-button type="danger" size="large" @click.native="handleClick">下一步</mt-button> -->
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-import firstTab from './instalmentInfo/index.vue'
-import secondTab from './identityAuthentication/index.vue'
-import thirdTab from './bindAndInvestigation/index.vue'
-import signContract from './signContract/index.vue'
 export default {
     name: 'hello',
-    data() {
-        return {
-            selected: "1",
-            center: true,
-            loading: true
-            }
-    },
-    components: {
-        firstTab,
-        secondTab,
-        thirdTab,
-        signContract
+    computed: {
+        step() {
+            return this.$store.state.home.step
+        }
     },
     methods: {
         goToNextStep() {
-            if (Number(this.selected) === 4) {
+            if (Number(this.step) === 3) {
                 return
             }
-            this.selected = String(Number(this.selected) + 1)
+            this.$store.commit('to_next_step')
         }
     }
 }
@@ -76,6 +42,10 @@ export default {
     // overflow: hidden;
     .mint-tab-container{
         overflow: unset;
+    }
+    >.el-steps{
+        padding-left: 26px;
+        margin-right: -32px;
     }
    
 }

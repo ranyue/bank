@@ -8,10 +8,11 @@
       <mt-field label="分期期数：" placeholder="脱敏(不可修改)" :readonly="readonly" v-model="name"></mt-field>
       <div>
         <span>分期还款计划表：</span>
-        <mt-button plain type="primary"  @click.native="handleClick" >点击查看</mt-button>
+        <mt-button plain type="primary"  @click.native="showDetail" >点击查看</mt-button>
       </div>
     </div>
     <span>请点击下一步，签订合同，进行放款</span>
+     <mt-button  plain type="primary"  @click.native="goToNext">下一步</mt-button>
   </div>
 </template>
 <script>
@@ -31,12 +32,17 @@ export default {
     }
   },
   methods: {
-    handleClick() {
+    goToNext() {
       this.$store.dispatch('queryRepayPlan',{
         clientName: this.cust_name,
         clientID: this.cus_card_sno
       })
-    } 
+       this.$store.commit('to_next_step')
+      this.$router.push('/home/signContract')
+    },
+    showDetail() {
+      this.$router.push('showDetail')
+    }
   }
 }
 </script>

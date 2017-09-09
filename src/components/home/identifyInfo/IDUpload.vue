@@ -3,7 +3,7 @@
         <div v-for="(item, index) in msg" :key="index" >
             <span >{{item}}</span>
         </div>
-        
+          <mt-button  plain type="primary"  @click.native="handleClick">下一步</mt-button>
     </div>
 </template>
 <script>
@@ -55,6 +55,9 @@ export default {
                     ocr_type: '1', //	证件类型
                 }
             })
+        },
+        handleClick() {
+            this.$router.push('IDInfo')
         }
     }
 
@@ -88,6 +91,10 @@ export default {
               background-image: url('../../../../src/assets/png/card.png');
             //  background-image: url('../../src/assets/png/card-column.png');
         }
+    }
+     .mint-button {
+        margin: 20px 0 20px 0;
+        width: 86%;
     }
 }
 </style>

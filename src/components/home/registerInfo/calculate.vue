@@ -89,30 +89,25 @@ export default {
             //         duration: 1500
             //     });
             // } 
-            let params = {
-                appAccessToken: this.routeInfo.appAccessToken,
-                appID: this.routeInfo.appID,
-                encryptMethod: "NONE",
-                reqData: {
-                    sno: this.paramsObj.sno,
-                    original: this.paramsObj.original,
-                    biz_sence_sno:this.routeInfo.biz_sence_sno,
-                    mobile: this.mobile,
-                    payment_mon: this.value,
-                    down_payment: this.firstPayMoney,
-                },
-                seqNO: this.paramsObj.sno
-            }
-            this.$store.dispatch('instl_periods')
-            .then(res => {
-                 this.$emit('toNexT',{
-                    type: 'goBaseInfo'
-                })
-            })
-
-            // this.$emit('toNexT', {
-            //     type: 'goBaseInfo'
+            // let params = {
+            //     appAccessToken: this.routeInfo.appAccessToken,
+            //     appID: this.routeInfo.appID,
+            //     encryptMethod: "NONE",
+            //     reqData: {
+            //         sno: this.paramsObj.sno,
+            //         original: this.paramsObj.original,
+            //         biz_sence_sno:this.routeInfo.biz_sence_sno,
+            //         mobile: this.mobile,
+            //         payment_mon: this.value,
+            //         down_payment: this.firstPayMoney,
+            //     },
+            //     seqNO: this.paramsObj.sno
+            // }
+            // this.$store.dispatch('instl_periods')
+            // .then(res => {
+            //      this.$router.push('baseInfo')
             // })
+            this.$router.push('baseInfo')
         }
     },
     created() {

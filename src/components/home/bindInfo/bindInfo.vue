@@ -1,13 +1,14 @@
 <template>
     <div class="bind-info">
-        <mt-field label="姓名：" placeholder="请输入姓名"  :readonly="readonly" v-model="cust_name"></mt-field>
+        <mt-field label="姓名：" placeholder="请输入姓名" :readonly="readonly" v-model="cust_name"></mt-field>
         <mt-field label="银行卡号：" placeholder="请输入银行卡号" type="number" v-model="cardNo"></mt-field>
-        <mt-field label="卡类型：" placeholder="卡类型"  :readonly="readonly" v-model="serialNo"></mt-field>
+        <mt-field label="卡类型：" placeholder="卡类型" :readonly="readonly" v-model="serialNo"></mt-field>
         <mt-field label="预留手机号：" placeholder="请输入预留手机号" type="number" v-model="mobile"></mt-field>
         <div class="code">
             <mt-field label="验证码：" placeholder="请输入验证码" type="number" v-model="dynamicPwd"></mt-field>
-            <mt-button plain type="primary" @click.native="handleClick">获取验证码</mt-button>
+            <mt-button plain type="primary" @click.native="getCode">获取验证码</mt-button>
         </div>
+        <mt-button plain type="primary" @click.native="handleClick">下一步</mt-button>
     </div>
 </template>
 
@@ -36,7 +37,7 @@ export default {
         }
     },
     methods: {
-        handleClick() {
+        getCode() {
             let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/
             if (!myreg.test(this.mobile)) {
                 return Toast({
@@ -65,7 +66,7 @@ export default {
                     })
                 })
         },
-        validateMessgae() {
+        handleClick() {
             if (!this.dynamicPwd) {
                 Toast({
                     message: '请输入短信验证码',
@@ -78,7 +79,7 @@ export default {
                     message: '请输入银行卡号',
                     duration: 1500
                 })
-                return 
+                return
             }
             this.$store.dispatch('verifyMsg', {
                 code: {
@@ -90,6 +91,7 @@ export default {
                     templateType: 'CB0001',
                 }
             })
+            this.$router.push('authorization')
         }
     },
     watch: {
@@ -114,11 +116,14 @@ export default {
             width: 60%;
         }
         >button.mint-button {
-
             width: 30%;
             font-size: 14px;
             height: 35px;
         }
+    }
+    >.mint-button {
+        margin: 20px 0 20px 0;
+        width: 86%;
     }
 }
 </style>

@@ -13,9 +13,9 @@
         </div>
         <div class="code">
             <mt-field label="验证码：" placeholder="请输入验证码" type="number" v-model="licencePlateNum"></mt-field>
-            <mt-button plain type="primary" @click.native="handleClick">获取验证码</mt-button>
+            <mt-button plain type="primary" @click.native="getCode">获取验证码</mt-button>
         </div>
-        <mt-button plain type="primary" @click.native="handleClick">完成</mt-button>
+        <mt-button plain type="primary" @click.native="handleOver">完成</mt-button>
     </div>
 </template>
 
@@ -30,7 +30,36 @@ export default {
         }
     },
     methods: {
-        handleClick() {
+         getCode() {
+            let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/
+            if (!myreg.test(this.mobile)) {
+                return Toast({
+                    message: '请输入正确的手机号码',
+                    duration: 1500
+                });
+            }
+            Service.sendMessage({ mobile: this.mobile })
+                .then(res => {
+                    if (res.data.errorCode == 0) {
+                        Toast({
+                            message: '发送验证码成功',
+                            duration: 1500
+                        })
+                    } else {
+                        Toast({
+                            message: '发送验证码失败' + res.data.errorMsg,
+                            duration: 1500
+                        })
+                    }
+                })
+                .catch(e => {
+                    Toast({
+                        message: '发送验证码失败' + e,
+                        duration: 1500
+                    })
+                })
+        },
+        handleOver() {
 
         }
     }

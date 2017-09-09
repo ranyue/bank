@@ -18,6 +18,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
    position: relative;
+   overflow: hidden;
 
 }
 
