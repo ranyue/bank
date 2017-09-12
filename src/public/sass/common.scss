@@ -5,24 +5,22 @@ $baseFontSize2x: 200px !default;
 }
 .mint-radiolist{
   display: flex;
-  font-size: 13px;
+  font-size: pxToRem(13px);
   .mint-radiolist-title{
-    font-size: 16px;
+    font-size: pxToRem(14px);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 10px 0 30px;
+    margin: 0 pxToRem(50px) 0 0;
     color: #333333
   }
-  .mint-cell-wrapper{
-     padding: 0;
-  }
+
   .mint-radiolist-label{
      padding: 0;
   }
   .mint-cell{
-    padding-right: 10px;
-    margin-left: 10px;
+    padding-right: pxToRem(10px);
+    // margin-left: 10px;
   }
   .mint-radio-label{
     margin-left: 0px;
@@ -31,26 +29,89 @@ $baseFontSize2x: 200px !default;
 }
 
 .base-info{
-  font-size: 13px;
+  font-size: pxToRem(14px);
   .el-input{
-    width: pxToRem(175px);
+    width: pxToRem(240px);
+    font-family: SourceHanSansCN-Regular;
+    font-size: pxToRem(16px);
+    color: #333333;
+    letter-spacing: pxToRem(-0.45px);
   }
   .el-form-item{
     margin-bottom: pxToRem(10px);
   }
-
+.el-select-dropdown__item{
+  font-size: pxToRem(16px);
+}
+}
+.el-select-dropdown__item{
+  font-size: pxToRem(16px);
 }
 .home{
-  
+
+  .mint-cell-wrapper{
+    padding: 0;
+    font-size: pxToRem(16px);
+ }
   .el-step{
     width: 25%;
+  }
+  .el-step__head{
+    width: pxToRem(16px);
+    height: pxToRem(16px);
+    line-height: pxToRem(16px);
+  }
+  .el-step__icon{
+    line-height: pxToRem(16px);
   }
   >.el-steps.is-horizontal.is-center{
 
     margin: pxToRem(20px) 0 0 0;
     padding-left: pxToRem(30px);
   }
+  .el-step__line.is-horizontal{
+    top:pxToRem(10px);
+    left: pxToRem(20px);
+  }
+  .el-step__head.is-text.is-success{
+    background-color: #4A90E2;
+    border-color: #4A90E2;
+  }
+  .el-step__title.is-success{
+    color: #4A90E2;
+  }
+  .mint-field .mint-cell-title{
+    text-align: left;
+  }
+  >.mint-header {
+    span.mint-button-icon{
+      color: #0076FF;
+    }
+    .mint-button-text{
+      font-family: STHeitiSC-Light;
+      font-size: pxToRem(17px);
+      color: #0076FF;
+      letter-spacing: pxToRem(-0.41px);
+    }
+    .mint-header-title{
+      font-family: SourceHanSansCN-Light;
+      font-size: pxToRem(17px);
+      color: #030303;
+      letter-spacing: pxToRem(-0.41px);
+    }
+    .mintui{
+      font-size: pxToRem(23px);
+      font-weight: 700;
+    }
+
 }
+}
+.authorization .mint-button{
+  min-height: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 
 
 li{
@@ -61,4 +122,21 @@ li {
   margin: 0;
   padding: 0;
   -webkit-padding-start: 0;
+}
+.calculate {
+  .orange {
+      .mint-cell-wrapper {
+       
+          .mint-cell-value {
+              input {
+                  font-size: pxToRem(18px);
+                  color: #F58C23;
+                  letter-spacing: pxToRem(-0.44px);
+              }
+          }
+      }
+  }
+  .mint-cell-wrapper{
+    font-size: pxToRem(14px);
+  }
 }

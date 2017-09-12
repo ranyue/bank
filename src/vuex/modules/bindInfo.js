@@ -69,7 +69,6 @@ const actions = {
         })
     },
     queryRepayPlan({commit}, payload){
-        debugger
         Service.queryRepayPlan(payload)
         .then(res => {
             if(res.data.errorCode == 0){

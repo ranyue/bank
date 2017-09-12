@@ -108,7 +108,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './../../../public/sass/common.scss';
 .bind-info {
+    padding:  0 pxToRem(10px);
     .code {
         display: flex;
         align-items: center;
@@ -117,13 +119,15 @@ export default {
         }
         >button.mint-button {
             width: 30%;
-            font-size: 14px;
-            height: 35px;
+            font-size: pxToRem(14px);
+            height: pxToRem(35px);
         }
     }
-    >.mint-button {
-        margin: 20px 0 20px 0;
-        width: 86%;
+    >  .mint-button {
+        width: pxToRem(301px);
+        height: pxToRem(50px);
+        margin-top: pxToRem(40px);
+        margin-bottom: pxToRem(29px);
     }
 }
 </style>

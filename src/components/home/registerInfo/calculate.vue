@@ -1,14 +1,14 @@
 <template>
     <div class="calculate">
-        <mt-field label="车牌号" placeholder="脱敏(不可修改)"  :readonly="readonly" v-model="initialInfo.rspData.sence_json.vehicle_num"></mt-field>
-        <mt-field label="车架号" placeholder="脱敏(不可修改)"  :readonly="readonly" v-model="initialInfo.rspData.sence_json.vehicle_identifiy"></mt-field>
+        <mt-field label="车牌号" placeholder="脱敏(不可修改)" :readonly="readonly" v-model="initialInfo.rspData.sence_json.vehicle_num"></mt-field>
+        <mt-field label="车架号" placeholder="脱敏(不可修改)" :readonly="readonly" v-model="initialInfo.rspData.sence_json.vehicle_identifiy"></mt-field>
         <mt-field label="姓名" placeholder="脱敏(不可修改)" :readonly="readonly" v-model="initialInfo.rspData.cust_name"></mt-field>
         <mt-field label="身份证号" placeholder="输入身份证后六位" v-model="IDnumber"></mt-field>
         <mt-field label="手机号" placeholder="请输入手机号码" type="tel" v-model="initialInfo.rspData.mobile"></mt-field>
-        <mt-field label="保单金额" :readonly="readonly"  v-model="initialInfo.rspData.sence_json.insure_fee"></mt-field>
+        <mt-field label="保单金额" :readonly="readonly" class="orange" v-model="initialInfo.rspData.sence_json.insure_fee"></mt-field>
         <mt-radio title="选择期数" v-model="value" :options="options"></mt-radio>
-        <mt-field label="首付金额" :readonly="readonly"  v-model="firstPayMoney"></mt-field>
-        <mt-field label="每月还款金额" :readonly="readonly"  v-model="perPayMoney"></mt-field>
+        <mt-field label="首付金额" :readonly="readonly" class="orange" v-model="firstPayMoney"></mt-field>
+        <mt-field label="每月还款金额" :readonly="readonly" class="orange" v-model="perPayMoney"></mt-field>
         <mt-button plain type="primary" @click.native="handleClick">下一步</mt-button>
     </div>
 </template>
@@ -129,9 +129,15 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.mint-button {
-    margin: 20px 0 20px 0;
-    width: 86%;
+@import './../../../public/sass/common.scss';
+   .mint-button {
+        width: pxToRem(301px);
+        height: pxToRem(50px);
+        margin-top: pxToRem(40px);
+        margin-bottom: pxToRem(29px);
+    }
+.calculate{
+    padding:  0 pxToRem(10px);
 }
 </style>
 

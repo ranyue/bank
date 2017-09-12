@@ -1,6 +1,6 @@
 <template>
     <div class="base-info">
-        <el-form ref="form" :model="form" label-width="80px">
+        <el-form ref="form" :model="form" label-width="80px" label-position="left">
             <el-form-item label="最高学历">
                 <el-select v-model="form.education_level" placeholder="请选择学历">
                     <el-option v-for="item in education_level" :key="item.value" :label="item.label" :value="item.value">
@@ -293,7 +293,7 @@ export default {
             // this.$store.dispatch('add_client_sub_info', params)
             //     .then(res => {     
             //          this.$store.commit('to_next_step')
-           //         this.$router.push('/home/identifyInfo/IDUpload')
+            //         this.$router.push('/home/identifyInfo/IDUpload')
             //     })
             this.$store.commit('to_next_step')
             this.$router.push('/home/identifyInfo/IDUpload')
@@ -315,11 +315,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './../../../public/sass/common.scss';
 .base-info {
-    margin-top: 15px;
+    margin-top: pxToRem(15px);
     .mint-button {
-        margin: 20px 0 20px 0;
-        width: 86%;
+        width: pxToRem(301px);
+        height: pxToRem(50px);
+        margin-top: pxToRem(40px);
+        margin-bottom: pxToRem(29px);
+    }
+    >form {
+        padding-left: pxToRem(10px);
     }
 }
 </style>

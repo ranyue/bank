@@ -64,8 +64,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import './../../public/sass/common.scss';
 .account {
-    font-size: 16px;
+    font-size: pxToRem(16px);
     background-color: #f2f2f2;
     width: 100%;
     height: 100%;
@@ -75,16 +76,16 @@ export default {
     flex-direction: column;
     .card-info {
         background-color: #FF4949;
-        width: 320px;
-        height: 100px;
+        width:  pxToRem(320px);
+        height:  pxToRem(100px);
         color: #fff;
-        font-size: 18px;
+        font-size:  pxToRem(18px);
         display: flex;
         flex-direction: column;
         border-radius: 4px;
-        margin: 20px;
+        margin:  pxToRem(20px);
         >span {
-            margin-top: 15px;
+            margin-top:  pxToRem(15px);
             display: inline-block;
         }
     }
@@ -93,21 +94,21 @@ export default {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-bottom: 20px;
+        margin-bottom:  pxToRem(20px);
         span {
-            margin-bottom: 10px;
+            margin-bottom:  pxToRem(10px);
         }
         ul {
             li {
                 background-color: #fff;
-                width: 320px;
+                width:  pxToRem(320px);
                 display: flex;
                 flex-direction: column;
-                margin-bottom: 10px;
-                padding-top: 10px;
+                margin-bottom:  pxToRem(10px);
+                padding-top:  pxToRem(10px);
                 >span {
                     align-self: flex-start;
-                    margin-left: 10px;
+                    margin-left:  pxToRem(10px);
                 }
                 >div {
                     display: flex;
@@ -116,13 +117,13 @@ export default {
                         display: flex;
                         flex-direction: column;
                         >span.text-dec {
-                            font-size: 12px;
+                            font-size:  pxToRem(12px);
                         }
                     }
                     .status {
                         >span {
                             &:nth-of-type(1) {
-                                border-radius: 5px;
+                                border-radius:  pxToRem(5px);
                                 background-color: darkgray;
                             }
                             &.success {

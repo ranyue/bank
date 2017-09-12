@@ -1,5 +1,5 @@
 <template>
-    <div class="show-detail" >
+    <div class="show-detail">
         <span>分期还款计划表</span>
         <div class="table">
             <ul>
@@ -53,42 +53,42 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import './../../../public/sass/common.scss';
 .show-detail {
     position: absolute;
     top: 0;
     left: 0;
     background: #fff;
-    width: 100%;
-    // height: 100%;
+    width: 100%; // height: 100%;
     display: flex;
     flex-direction: column;
     >span {
-        font-size: 18px;
+        font-size: pxToRem(18px);
         font-weight: 700;
-        margin-top: 30px;
+        margin-top: pxToRem(30px);
     }
     .table {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 30px;
-        margin-bottom: 120px;
+        margin-top: pxToRem(30px);
+        margin-bottom: pxToRem(120px);
         ul {
             border-bottom: 1px solid #c3c3c3;
             border-right: 1px solid #c3c3c3;
             display: flex;
             flex-direction: column;
-            width: 270px;
+            width: pxToRem(270px);
             -webkit-padding-start: 0;
             li {
                 display: flex;
-                font-size: 15px;
+                font-size: pxToRem(15px);
                 span {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 90px;
-                    height: 30px;
+                    width: pxToRem(90px);
+                    height: pxToRem(30px);
                     border-left: 1px solid #c3c3c3;
                     border-top: 1px solid #c3c3c3;
                 }
@@ -96,8 +96,10 @@ export default {
         }
     }
     .mint-button {
-        margin: 20px 0 20px 7%;
-        width: 86%;
+        width: pxToRem(301px);
+        height: pxToRem(50px);
+        margin-top: pxToRem(40px);
+        margin-bottom: pxToRem(29px);
     }
 }
 </style>

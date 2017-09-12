@@ -46,8 +46,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './../../../public/sass/common.scss';
     .mint-button {
-        margin: 20px 0 20px 0;
-        width: 86%;
+        width: pxToRem(301px);
+        height: pxToRem(50px);
+        margin-top: pxToRem(40px);
+        margin-bottom: pxToRem(29px);
     }
+    .IDinfo{
+    padding:  0 pxToRem(10px);
+}
 </style>

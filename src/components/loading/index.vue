@@ -32,12 +32,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './../../public/sass/common.scss';
 .loading {
     .content{
-        margin-top: 60px;
+        margin-top: pxToRem(60px);
     }
-    .mint-button {
-    
+    .mint-button {  
         width: 86%;
     }
 }

@@ -93,8 +93,10 @@ export default {
         }
     }
      .mint-button {
-        margin: 20px 0 20px 0;
-        width: 86%;
+        width: pxToRem(301px);
+        height: pxToRem(50px);
+        margin-top: pxToRem(40px);
+        margin-bottom: pxToRem(29px);
     }
 }
 </style>

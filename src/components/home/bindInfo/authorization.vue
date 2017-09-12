@@ -1,22 +1,24 @@
 <template>
   <div class="authorization">
     <div class="text-content">
-      <span>浙江泰隆商业银行股份有限公司</span>
-      <span>浙江泰隆商业银行舟山分行：</span>
+      <span class="title">浙江泰隆商业银行股份有限公司</span>
+      <span class="header">浙江泰隆商业银行舟山分行：</span>
       <p>本人XXX（身份证XXXX），现向贵行申请贷款人民币XXXX元整，同时授权贵行在人民银行规定范围内，通过中国人民银行个人信用基础数据库查询、打印、保存本人个人基本信息和信用信息，并向个人信用信息基础数据库提供本人个人信息和信用信息。<br>授权期限为本人签订授权书之日起至合同项下债务清偿完毕止。<br>上述查询所得信用报告只限在贵行办理业务所用，贵行需保存好本人的信用报告。本人已知悉并理解授权条款的声明。</p>
       <div>
-        <mt-checklist  v-model="value" :options="['本人已阅读以上条款']">
+        <mt-checklist v-model="value" :options="['本人已阅读以上条款']">
         </mt-checklist>
       </div>
     </div>
     <div class="code">
-      <mt-field label="验证码：" placeholder="请输入验证码" type="number" v-model="dynamicPwd"></mt-field>
-      <mt-button plain type="primary" @click.native="getCode">获取验证码</mt-button>
+      <mt-field label="手机号码" placeholder="请输入手机号码" v-model="licencePlateNum"></mt-field>
+      <div class="get-code">
+        <mt-field label="验证码：" placeholder="请输入验证码" type="number" v-model="licencePlateNum"></mt-field>
+        <mt-button plain type="primary" @click.native="getCode">获取验证码</mt-button>
+      </div>
     </div>
-     <mt-button  plain type="primary"  @click.native="goToNext">下一步</mt-button>
+    <mt-button plain type="primary" @click.native="goToNext">下一步</mt-button>
   </div>
 </template>
-
 <script>
 import Service from './../../../api/index.js'
 import { Toast } from 'mint-ui'
@@ -97,42 +99,73 @@ export default {
           clientName: this.cust_name
         }
       })
-      .then(res => {
-        if(res.data.errorCode == 0){
-          
-        }
-      })
+        .then(res => {
+          if (res.data.errorCode == 0) {
+
+          }
+        })
       this.$router.push('detail')
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+@import './../../../public/sass/common.scss';
 .authorization {
   .text-content {
-    height: 256px;
-    overflow: scroll;
-    font-size: 16px;
-    padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid #ccc;
-    line-height: 20px;
+    font-family: SourceHanSansCN-Light;
+    font-size: pxToRem(14px);
+    color: #666666;
+    letter-spacing: pxToRem(-0.34px);
+    line-height: pxToRem(17px);
+    margin: pxToRem(12px) pxToRem(20px) 0;
+     .title {
+            margin-bottom: pxToRem(10px);
+        }
+        .header {
+            align-self: flex-start;
+        }
+        >p {
+            margin-top: 0;
+        }
   }
   .code {
     display: flex;
     align-items: center;
+    padding:  pxToRem(20px)  pxToRem(10px);
+    flex-direction: column;
     >a {
-      width: 60%;
+      width: 100%;
     }
-    >button.mint-button {
-
-      width: 30%;
-      font-size: 14px;
-      height: 35px;
+    .get-code {
+      display: flex;
+      align-items: center;
+      .mint-button {
+        width: 30%;
+        font-size: pxToRem(14px);
+        height: pxToRem(35px);
+        margin-top: 0;
+        margin-bottom: 0;
+      }
     }
+  }
+  >.mint-button {
+    width: pxToRem(301px);
+    height: pxToRem(50px);
+    margin-top: pxToRem(40px);
+    margin-bottom: pxToRem(29px);
+    border: 2px solid #999999;
+    border-radius: pxToRem(6px);
+  }
+  >.mint-button--primary.is-plain {
+    font-family: SourceHanSansCN-Regular;
+    font-size: 18px;
+    color: #999999;
+    letter-spacing: -0.44px;
   }
 }
 </style>

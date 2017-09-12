@@ -18,27 +18,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './../../../public/sass/common.scss';
 .face{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
+  padding-top: pxToRem(20px);
   .tips{
-    font-size: 16px;
-    margin-bottom: 15px;
+    font-size: pxToRem(16px);
+    margin-bottom: pxToRem(15px);
   }
   .capture{
-    margin-top: 15px;
+    margin-top: pxToRem(15px);
     border-radius: 50%;
     background: #fff;
-    width: 50px;
-    height: 50px;
-    font-size: 14px;
+    width: pxToRem(50px);
+    height: pxToRem(50px);
+    font-size: pxToRem(14px);
   }
-    .mint-button {
-        margin: 20px 0 20px 0;
-        width: 86%;
+ .mint-button {
+        width: pxToRem(301px);
+        height: pxToRem(50px);
+        margin-top: pxToRem(40px);
+        margin-bottom: pxToRem(29px);
     }
 }
 </style>
