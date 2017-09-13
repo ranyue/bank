@@ -16,7 +16,6 @@ import bindDetail from '@/components/home/bindInfo/bindDetail.vue'
 import showDetail from '@/components/home/bindInfo/showDetail.vue'
 import authorization from '@/components/home/bindInfo/authorization.vue'
 
-
 import signContract from '@/components/home/signContract/index.vue'
 
 Vue.use(Router)
@@ -26,7 +25,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home/registerInfo/calculate',
+      redirect: '/home/registerInfo/calculate'
     },
     {
       path: '/home',
@@ -34,45 +33,45 @@ export default new Router({
       children: [
         {
           path: 'registerInfo/calculate',
-          component: calculate,
+          component: calculate
         },
         {
           path: 'registerInfo/baseInfo',
-          component: baseInfo,
+          component: baseInfo
         },
         {
           path: 'identifyInfo/IDUpload',
-          component: IDUpload,
+          component: IDUpload
         },
         {
           path: 'identifyInfo/IDInfo',
-          component: IDInfo,
+          component: IDInfo
         },
         {
           path: 'identifyInfo/faceInfo',
-          component: faceInfo,
+          component: faceInfo
         },
         {
           path: 'bindInfo/index',
-          component: bindInfo,
+          component: bindInfo
         },
         {
           path: 'bindInfo/detail',
-          component: bindDetail,
+          component: bindDetail
         },
         {
           path: 'bindInfo/showDetail',
-          component: showDetail,
+          component: showDetail
         },
         {
           path: 'bindInfo/authorization',
-          component: authorization,
+          component: authorization
         },
         {
           path: 'signContract',
-          component: signContract,
+          component: signContract
         }
-      ] 
+      ]
     },
     {
       path: '/loading',
@@ -83,6 +82,7 @@ export default new Router({
       path: '/account',
       name: 'account',
       component: account
-    }
+    },
+    { path: '*', redirect: '/home/registerInfo/calculate' }
   ]
 })
