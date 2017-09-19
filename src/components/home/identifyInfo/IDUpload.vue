@@ -1,6 +1,6 @@
 <template>
     <div class="IDupload">
-        <div class="content">
+        <div class="content" v-loading="loading">
             <div class="font">
                 <button>
                     <i class="el-icon-plus"></i>
@@ -22,7 +22,7 @@
                 <div class="picture" :style="'backgroundImage:url('+frontPhoto+')'"></div>
             </div>
         </div>
-        <mt-button plain type="primary" @click.native="handleClick">下一步</mt-button>
+        <mt-button plain type="primary" @click.native="handleClick" :disabled="loading">下一步</mt-button>
     </div>
 </template>
 <script>
@@ -37,8 +37,8 @@ export default {
             biz_name: '小鱼bank',//	业务名
             ocr_type: '1', //	证件类型
             picValue: '',
-            type: undefined
-
+            type: undefined,
+            loading: false
         }
     },
     computed: {
@@ -60,6 +60,7 @@ export default {
                     duration: 1500
                 });
             }
+            this.loading = true
             this.$store.dispatch('addImageInfo', {
                 font: {
                     frontPhoto: this.frontPhoto,	// 身份证正面照片
@@ -73,6 +74,10 @@ export default {
                     biz_name: '小鱼bank',//	业务名
                     ocr_type: '1', //	证件类型
                 }
+            }).then(res => {
+               if(res.ok) {
+                   this.loading = false
+               }
             })
         },
         handleClick() {
@@ -245,7 +250,7 @@ export default {
                 }
             }
             //进行最小压缩  
-            let ndata = canvas.toDataURL('image/jpeg', 0.1);
+            let ndata = canvas.toDataURL('image/jpeg', 0.5);
             console.log('压缩前：' + initSize);
             console.log('压缩后：' + ndata.length);
             console.log('压缩率：' + ~~(100 * (initSize - ndata.length) / initSize) + "%");

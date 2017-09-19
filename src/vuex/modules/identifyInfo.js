@@ -25,11 +25,10 @@ const state = {
         error_info: '',
         error_no: ''
     }
-
 }
 const actions = {
     addImageInfo({ commit }, payload) {
-        Promise.all([Service.addImageInfo(payload.font), Service.addImageInfo(payload.back)])
+    return  Promise.all([Service.addImageInfo(payload.font), Service.addImageInfo(payload.back)])
             .then(res => {
                 if (res[0].data.error_no == 0) {
                     commit('saveFontInfo', res[0].data)
@@ -37,9 +36,15 @@ const actions = {
                 if (res[1].data.error_no == 0) {
                     commit('saveBackInfo', res[1].data)
                 }
+                return {
+                    ok : true
+                }
             })
             .catch(e => {
                 console.log(e)
+                return {
+                    ok : false
+                }
             })
     },
     updateClientInfo({commit}, payload) {
