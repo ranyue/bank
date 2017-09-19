@@ -229,6 +229,7 @@ export default {
     bottom: 20px;
     left: 50%;
     transform: translate(-50%, 0);
+    border: 1px solid #ccc;
   }
   .mint-button {
     width: pxToRem(301px);
