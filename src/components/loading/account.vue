@@ -28,7 +28,7 @@
                 </li>
             </ul>
         </div>
-          <mt-button plain type="primary" @click.native="handleClick">确认还款</mt-button>
+        <mt-button plain type="primary" @click.native="handleClick">确认还款</mt-button>
     </div>
 </template>
 <script>
@@ -75,17 +75,18 @@ export default {
     align-items: center;
     flex-direction: column;
     .card-info {
-        background-color: #FF4949;
-        width:  pxToRem(320px);
-        height:  pxToRem(100px);
+        width: pxToRem(320px);
+        height: pxToRem(100px);
         color: #fff;
-        font-size:  pxToRem(18px);
+        font-size: pxToRem(18px);
         display: flex;
         flex-direction: column;
         border-radius: 4px;
-        margin:  pxToRem(20px);
+        margin: pxToRem(20px);
+        background: #FD5F5F;
+        border-radius: pxToRem(6px) 0px pxToRem(6px) pxToRem(6px) pxToRem(6px);
         >span {
-            margin-top:  pxToRem(15px);
+            margin-top: pxToRem(15px);
             display: inline-block;
         }
     }
@@ -94,21 +95,21 @@ export default {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-bottom:  pxToRem(20px);
+        margin-bottom: pxToRem(20px);
         span {
-            margin-bottom:  pxToRem(10px);
+            margin-bottom: pxToRem(10px);
         }
         ul {
             li {
                 background-color: #fff;
-                width:  pxToRem(320px);
+                width: pxToRem(320px);
                 display: flex;
                 flex-direction: column;
-                margin-bottom:  pxToRem(10px);
-                padding-top:  pxToRem(10px);
+                margin-bottom: pxToRem(10px);
+                padding-top: pxToRem(10px);
                 >span {
                     align-self: flex-start;
-                    margin-left:  pxToRem(10px);
+                    margin-left: pxToRem(10px);
                 }
                 >div {
                     display: flex;
@@ -117,13 +118,13 @@ export default {
                         display: flex;
                         flex-direction: column;
                         >span.text-dec {
-                            font-size:  pxToRem(12px);
+                            font-size: pxToRem(12px);
                         }
                     }
                     .status {
                         >span {
                             &:nth-of-type(1) {
-                                border-radius:  pxToRem(5px);
+                                border-radius: pxToRem(5px);
                                 background-color: darkgray;
                             }
                             &.success {

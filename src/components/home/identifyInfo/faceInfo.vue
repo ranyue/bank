@@ -1,11 +1,11 @@
 <template>
   <div class="face">
     <span class="tips">请您将您的面部正对屏幕</span>
-    <div class="photo" :style="'backgroundImage:url('+phone+')'">
+    <div class="photo" :style="'backgroundImage:url('+phone+')'" v-loading="loading">
       <button class="capture">拍照</button>
       <input type="file" accept="image/jpeg,image/jpg,image/png" capture="camera" @change="upload">
     </div>
-    <mt-button plain type="primary" @click.native="handleClick">下一步</mt-button>
+    <mt-button plain type="primary" @click.native="handleClick" :disabled="loading">下一步</mt-button>
   </div>
 </template>
 <script>
@@ -14,7 +14,8 @@ export default {
   data() {
     return {
       phone: '',
-      picValue: ''
+      picValue: '',
+      loading: false
     }
   },
   methods: {
@@ -29,6 +30,7 @@ export default {
       this.imgPreview(this.picValue);
     },
     imgPreview(file) {
+      this.loading = true // 耗时太长，直接loading
       let self = this;
       let Orientation;
       //去获取拍照时的信息，解决拍出来的照片旋转问题  
@@ -64,6 +66,7 @@ export default {
     },
     postImg() {
       //这里写接口  
+      this.loading = false
     },
     rotateImg(img, direction, canvas) {
       //最小与最大旋转方向，图片旋转4次后回到原方向      

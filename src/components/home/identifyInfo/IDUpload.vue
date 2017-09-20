@@ -49,18 +49,19 @@ export default {
     methods: {
         postImg() {
             if (!this.frontPhoto) {
+                this.loading = false
                 return Toast({
                     message: '请上传正面照片',
                     duration: 1500
                 });
             }
             if (!this.conPhoto) {
+                this.loading = false
                 return Toast({
                     message: '请上传反面照片',
                     duration: 1500
                 });
             }
-            this.loading = true
             this.$store.dispatch('addImageInfo', {
                 font: {
                     frontPhoto: this.frontPhoto,	// 身份证正面照片
@@ -98,6 +99,7 @@ export default {
             this.imgPreview(this.picValue);
         },
         imgPreview(file) {
+            this.loading = true // 耗时太长，直接loading
             let self = this;
             let Orientation;
             //去获取拍照时的信息，解决拍出来的照片旋转问题  
@@ -117,8 +119,8 @@ export default {
                     let result = this.result;
                     let img = new Image();
                     img.src = result;
-                    //判断图片是否大于100K,是就直接上传，反之压缩图片  
-                    if (this.result.length <= (100 * 1024)) {
+                    //判断图片是否大于500K,是就直接上传，反之压缩图片  
+                    if (this.result.length <= (500 * 1024)) {
                         if (self.type === 'back') {
                             self.conPhoto = this.result;
                         } else {
