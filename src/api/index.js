@@ -78,5 +78,16 @@ function Service() {
     Object.assign(params, { sno: paramsObj.sno })
     return axios.post('/api/sence/validateAxsMsg',params)
   } 
+  // 还款计划
+  this.queryRepayPlan = (params) => {
+    Object.assign(params, { sno: paramsObj.sno })
+    return axios.post('/api/sence/queryRepayPlan',params)
+  } 
+  // 还款信息
+  this.queryRepayInfo = (params) => {
+    Object.assign(params, { sno: paramsObj.sno })
+    return axios.post('/api/sence/queryRepayInfo',params)
+  } 
+  
 }
 export default new Service()

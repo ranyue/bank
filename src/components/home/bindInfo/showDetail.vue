@@ -3,10 +3,10 @@
         <span>分期还款计划表</span>
         <div class="table">
             <ul>
-                <li v-for="(item ,index) in info" :key="index">
-                    <span>{{item.times}}</span>
-                    <span>{{item.date}}</span>
-                    <span>{{item.amount}}</span>
+                <li v-for="(item ,index) in repayplanList" :key="index">
+                    <span>{{item.repay_period}}</span>
+                    <span>{{item.repay_date}}</span>
+                    <span>{{item.repay_sum}}</span>
                 </li>
             </ul>
         </div>
@@ -15,40 +15,22 @@
 </template>
 <script>
 export default {
-    data() {
-        return {
-            info: [
-                {
-                    times: '还款分期',
-                    date: '还款时间',
-                    amount: '还款额度'
-                },
-                {
-                    times: '第一期',
-                    date: '2017.8.12',
-                    amount: '2500元'
-                },
-                {
-                    times: '第一期',
-                    date: '2017.8.12',
-                    amount: '2500元'
-                }, {
-                    times: '第一期',
-                    date: '2017.8.12',
-                    amount: '2500元'
-                }
-            ]
-        }
-    },
     computed: {
-        repayPlan() {
-            return this.$store.state.bindInfo.repayPlan
+        repayplanList() {
+            return this.$store.state.bindInfo.repayplanList
         }
     },
     methods: {
         handleClick() {
             this.$router.push('bindDetail')
         }
+    },
+    created: function() {
+        let params = {
+            clientID: this.initialInfo.rspData.cus_card_sno,
+            clientName: this.initialInfo.rspData.cust_name
+        }
+        this.$store.dispatch('queryRepayPlan')
     }
 }
 </script>

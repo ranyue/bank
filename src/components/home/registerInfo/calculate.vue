@@ -76,14 +76,14 @@ export default {
     },
     methods: {
         handleClick() {
-            // let length = this.initialInfo.cus_card_sno.length
-            // if(this.IDnumber != this.initialInfo.cus_card_sno.substring(length - 6)){
+            // let length = this.initialInfo.rspData.cus_card_sno.length
+            // if(this.IDnumber != this.initialInfo.rspData.cus_card_sno.substring(length - 6)){
             //     return Toast({
             //         message: '身份证号码不匹配',
             //         duration: 1500
             //     });
             // }
-            //  if(!(/^1[34578]\d{9}$/.test(this.initialInfo.mobile))){ 
+            //  if(!(/^1[34578]\d{9}$/.test(this.initialInfo.rspData.mobile))){ 
             //    return Toast({
             //         message: '手机号码有误',
             //         duration: 1500

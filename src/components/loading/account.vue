@@ -8,21 +8,21 @@
         <div class="detail">
             <span>还款详情</span>
             <ul>
-                <li v-for="(item, index) in info" :key="index">
-                    <span>{{item.times}}</span>
+                <li v-for="(item, index) in repayplanList" :key="index">
+                    <span>{{item.repay_period}}</span>
                     <div>
                         <div>
-                            <span>{{item.date}}</span>
+                            <span>{{item.repay_date}}</span>
                             <span class="text-dec">还款日期</span>
                         </div>
                         <div>
-                            <span>{{item.amount}}</span>
+                            <span>{{item.repay_sum}}</span>
                             <span class="text-dec">还款金额</span>
                         </div>
-                        <div class="status">
+                        <!-- <div class="status">
                             <span :class="item.isRepay? 'success' : ''">{{item.isRepay ? '已还': '未还'}}</span>
                             <span class="text-dec">还款状态</span>
-                        </div>
+                        </div> -->
                     </div>
 
                 </li>
@@ -33,33 +33,29 @@
 </template>
 <script>
 export default {
-    data() {
-        return {
-            info: [
-                {
-                    times: '第一期',
-                    date: '2017.8.12',
-                    amount: '2500元',
-                    isRepay: true,
-                },
-                {
-                    times: '第二期',
-                    date: '2017.8.12',
-                    amount: '2500元',
-                    isRepay: false,
-                }, {
-                    times: '第三期',
-                    date: '2017.8.12',
-                    amount: '2500元',
-                    isRepay: false,
-                }
-            ]
+    computed: {
+        initialInfo: function() {
+            return this.$store.state.home.initialInfo
+        },
+        biz_sence_sno() {
+            return this.$store.state.home.routeInfo.biz_sence_sno
+        },
+        repayplanList() {
+            return this.$store.state.account.repayplanList
         }
     },
     methods: {
         handleClick() {
 
         }
+    },
+    created: function() {
+        let params = {
+            clientID: this.initialInfo.rspData.cus_card_sno,
+            clientName: this.initialInfo.rspData.cust_name,
+            businessNo: this.biz_sence_sno
+        }
+        this.$store.dispatch('getRepayInfo')
     }
 }
 </script>

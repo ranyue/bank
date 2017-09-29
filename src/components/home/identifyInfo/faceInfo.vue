@@ -1,19 +1,27 @@
 <template>
   <div class="face">
     <span class="tips">请您将您的面部正对屏幕</span>
-    <div class="photo" :style="'backgroundImage:url('+phone+')'" v-loading="loading">
+    <div class="photo" :style="'backgroundImage:url('+phone+')'" v-loading="loading" v-if="!canRealPhone">
       <button class="capture">拍照</button>
       <input type="file" accept="image/jpeg,image/jpg,image/png" capture="camera" @change="upload">
+    </div>
+    <div v-if="canRealPhone">
+      <mt-button plain type="primary" @click.native="getMedia">开启摄像头</mt-button>
+      <video height="120px" autoplay="autoplay"></video>
+      <mt-button plain type="primary" @click.native="getPhoto">拍照</mt-button>
+      <canvas id="canvas1" height="120px" width="200px"></canvas>
     </div>
     <mt-button plain type="primary" @click.native="handleClick" :disabled="loading">下一步</mt-button>
   </div>
 </template>
 <script>
+import { Toast, MessageBox } from 'mint-ui';
 export default {
   data() {
     return {
       phone: '',
-      loading: false
+      loading: false,
+      canRealPhone: true
     }
   },
   methods: {
@@ -60,10 +68,71 @@ export default {
           let base64 = canvas.toDataURL('image/jpeg', 0.5)
           img.src = base64
           that.phone = base64
-          // canvas.remove()
         };
       };
+    },
+    getPhoto() {
+      let video = document.querySelector('video');
+      let canvas1 = document.querySelector('#canvas1')
+      let context1 = canvas1.getContext('2d')
+      context1.clearRect(0, 0, 200, 120)
+      context1.drawImage(video, 0, 0, 200, 120)
+      let base64 = canvas1.toDataURL('image/jpeg', 0.5)
+      this.phone = base64
+    },
+    getMedia() {
+      let video = document.querySelector('video');
+      let canvas1 = document.querySelector('#canvas1')
+      let context1 = canvas1.getContext('2d')
+      let constraints = {
+        video: {
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+          facingMode: "user",
+          frameRate: { ideal: 10, max: 15 }
+        },
+        audio: false
+      }
+      var promisifiedOldGUM = function(constraints) {
+        // First get ahold of getUserMedia, if present
+        var getUserMedia = (navigator.getUserMedia ||
+          navigator.webkitGetUserMedia ||
+          navigator.mozGetUserMedia);
+        if (!getUserMedia) {
+          return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+        }
+        return new Promise(function(resolve, reject) {
+          getUserMedia.call(navigator, constraints, resolve, reject);
+        });
+      }
+      window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+      if (navigator.mediaDevices === undefined) {
+        navigator.mediaDevices = {};
+      }
+      if (navigator.mediaDevices.getUserMedia === undefined) {
+        navigator.mediaDevices.getUserMedia = promisifiedOldGUM;
+      }
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(stream) {
+          if ("srcObject" in video) {
+            video.srcObject = stream
+          } else {
+            video.src = window.URL && window.URL.createObjectURL(stream) || stream
+          }
+          video.onloadedmetadata = function(e) {
+            video.play();
+          };
+        })
+        .catch(err => {
+          console.log(err);
+          Toast({
+            message: '设备不支持调取前置摄像头，可采用后置摄像头',
+            duration: 1500
+          });
+          this.canRealPhone = false
+        });
     }
+
   }
 }
 </script>

@@ -7,9 +7,7 @@ const state = {
     serialNo: '',
     templateNo: '',
     grantNo: '',
-    repayPlan: {
-
-    }
+    repayplanList: []
 }
 const actions = {
     getBankInfo({commit}, payload){
@@ -65,7 +63,7 @@ const actions = {
             }
         })
         .catch(e => {
-
+            console.log(e)
         })
     },
     queryRepayPlan({commit}, payload){
@@ -88,7 +86,7 @@ const mutations = {
         state.grantNo = payload
     },
     saveRepayPlan(state, payload) {
-        state.repayPlan = payload
+        state.repayplanList = payload.repayplan_list
     }
 }
 
